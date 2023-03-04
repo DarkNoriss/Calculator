@@ -71,7 +71,7 @@ function operate() {
     if (screenLast.innerText == ``) return
 
     varLast += screenCurrent.innerText
-    varCalc = eval(varLast)
+    varCalc = eval(varLast).toFixed(2)
     del()
     
     varCurrent = varCalc
