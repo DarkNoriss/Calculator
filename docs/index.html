@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+<<<<<<< HEAD
     <script type="module" crossorigin src="assets/index-10083149.js"></script>
     <link rel="stylesheet" href="assets/index-cd41b3b4.css" />
+=======
+    <script type="module" crossorigin src="/assets/index-10083149.js"></script>
+    <link rel="stylesheet" href="/assets/index-cd41b3b4.css">
+>>>>>>> bd9c36f47f3286e204cc20c7d0c1d83e6ef0ec89
   </head>
   <body>
     <div class="main">
@@ -16,9 +21,34 @@
         </div>
         <div class="app__buttons">
           <div class="app__buttons__top">
-            <button class="btnClear">CLEAR</button>
-            <button class="btnDelete">DELETE</button>
+            <button class="btnClear" data-operator="CLEAR">CLEAR</button>
+            <button class="btnDelete" data-operator="DELETE">DELETE</button>
           </div>
+          <div class="app__buttons__one">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button data-operator="/">÷</button>
+          </div>
+          <div class="app__buttons__two">
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button data-operator="*">×</button>
+          </div>
+          <div class="app__buttons__three">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button data-operator="-">-</button>
+          </div>
+          <div class="app__buttons__four">
+            <button>.</button>
+            <button>0</button>
+            <button data-operator="=">=</button>
+            <button data-operator="+">+</button>
+          </div>
+<<<<<<< HEAD
           <div class="app__buttons__one">
             <button>7</button>
             <button>8</button>
@@ -43,6 +73,8 @@
             <button class="btnOperate">=</button>
             <button class="btnAdd">+</button>
           </div>
+=======
+>>>>>>> bd9c36f47f3286e204cc20c7d0c1d83e6ef0ec89
         </div>
       </div>
     </div>
