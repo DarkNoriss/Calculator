@@ -39,7 +39,7 @@ function add() {
     if (screenCurrent.innerText == ``) return
 
     varLast += `${screenCurrent.innerText}+`
-    updateScreen()
+
     clear()
 }
 
@@ -47,7 +47,7 @@ function subtract() {
     if (screenCurrent.innerText == ``) return
 
     varLast += `${screenCurrent.innerText}-`
-    updateScreen()
+
     clear()
 }
 
@@ -55,7 +55,7 @@ function multiply() {
     if (screenCurrent.innerText == ``) return
 
     varLast += `${screenCurrent.innerText}*`
-    updateScreen()
+
     clear()
 }
 
@@ -63,7 +63,6 @@ function devide() {
     if (screenCurrent.innerText == ``) return
     varLast += `${screenCurrent.innerText}/`
 
-    updateScreen()
     clear()
 }
 
@@ -72,9 +71,10 @@ function operate() {
 
     varLast += screenCurrent.innerText
     varCalc = eval(varLast).toFixed(2)
-    del()
+
+    varLast = ``
+    varCurrent = parseFloat(varCalc)
     
-    varCurrent = varCalc
     updateScreen()
 }
 
