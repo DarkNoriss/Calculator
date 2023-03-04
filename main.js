@@ -30,7 +30,7 @@ function operate(a) {
       delet();
       break;
     case "=":
-      if (screenLast.innerText == "") return;
+      if (screenLast.innerText == "" || screenCurrent.innerText == "") break;
 
       updateScreenLast(`${valueCurrent}`);
       valueCalc = parseFloat(eval(valueLast).toFixed(2));
@@ -39,6 +39,7 @@ function operate(a) {
 
       break;
     default:
+      if (screenCurrent.innerText == "") break;
       updateScreenLast(`${valueCurrent}${a}`);
       updateScreenCurrent();
   }
