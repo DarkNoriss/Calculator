@@ -16,9 +16,11 @@ let valueLast = "",
 })();
 
 function click(event) {
-  if (event.target.attributes[0] === undefined)
+  if (event.target.attributes[0] === undefined) {
     updateScreenCurrent(event.target.innerText);
-  else operate(event.target.attributes[0].value);
+  } else {
+    operate(event.target.attributes["data-operator"].value);
+  }
 }
 
 function operate(a) {
@@ -30,7 +32,7 @@ function operate(a) {
       delet();
       break;
     case "=":
-      if (screenLast.innerText == "" || screenCurrent.innerText == "") break;
+      if (screenLast.innerText === "" || screenCurrent.innerText === "") break;
 
       updateScreenLast(`${valueCurrent}`);
       valueCalc = parseFloat(eval(valueLast).toFixed(2));
@@ -39,7 +41,8 @@ function operate(a) {
 
       break;
     default:
-      if (screenCurrent.innerText == "") break;
+      if (screenCurrent.innerText === "") break;
+
       updateScreenLast(`${valueCurrent}${a}`);
       updateScreenCurrent();
   }
