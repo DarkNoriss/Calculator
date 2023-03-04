@@ -1,95 +1,67 @@
-import './style.scss'
+import "./style.scss";
 
-const screenLast = document.querySelector('.app__screen-last')
-const screenCurrent = document.querySelector('.app__screen-current')
+const screenLast = document.querySelector(".app__screen-last");
+const screenCurrent = document.querySelector(".app__screen-current");
 
-let varLast = ``, varCurrent = ``, varCalc = ``
+let valueLast = "",
+  valueCurrent = "",
+  valueCalc = "";
 
-initListeners()
+(() => {
+  const btnAll = document.querySelectorAll(".app__buttons button");
 
-function initListeners() {
-    let btnClear = document.querySelector('.btnClear')
-    let btnDelete = document.querySelector('.btnDelete')
-    let btnDevide = document.querySelector('.btnDevide')
-    let btnMultiply = document.querySelector('.btnMultiply')
-    let btnSubtract = document.querySelector('.btnSubtract')
-    let btnAdd = document.querySelector('.btnAdd')
-    let btnOperate = document.querySelector('.btnOperate')
-    let btnDef = document.querySelectorAll(`.app__buttons button:not([class])`);
+  btnAll.forEach((element) => {
+    element.addEventListener(`click`, click);
+  });
+})();
 
-    btnClear.addEventListener(`click`, clear);
-    btnDelete.addEventListener(`click`, del);
-    btnDevide.addEventListener(`click`, devide);
-    btnMultiply.addEventListener(`click`, multiply);
-    btnSubtract.addEventListener(`click`, subtract);
-    btnAdd.addEventListener(`click`, add);
-    btnOperate.addEventListener(`click`, operate);
-
-    btnDef.forEach(element => {
-        element.addEventListener(`click`, def);
-    });
+function click(event) {
+  if (event.target.attributes[0] === undefined)
+    updateScreenCurrent(event.target.innerText);
+  else operate(event.target.attributes[0].value);
 }
 
-function def(e) {
-    varCurrent += e.target.innerText
-    updateScreen()
+function operate(a) {
+  switch (a) {
+    case "CLEAR":
+      clear();
+      break;
+    case "DELETE":
+      delet();
+      break;
+    case "=":
+      if (screenLast.innerText == "") return;
+
+      updateScreenLast(`${valueCurrent}`);
+      valueCalc = parseFloat(eval(valueLast).toFixed(2));
+      delet();
+      updateScreenCurrent(valueCalc);
+
+      break;
+    default:
+      updateScreenLast(`${valueCurrent}${a}`);
+      updateScreenCurrent();
+  }
 }
 
-function add() {
-    if (screenCurrent.innerText == ``) return
-
-    varLast += `${screenCurrent.innerText}+`
-
-    clear()
+function clear(a) {
+  updateScreenCurrent(a);
 }
 
-function subtract() {
-    if (screenCurrent.innerText == ``) return
+function delet(a) {
+  updateScreenLast(a);
+  clear(a);
+}
+function updateScreenLast(a) {
+  if (a === undefined) screenLast.innerText = "";
+  else screenLast.innerText += a;
 
-    varLast += `${screenCurrent.innerText}-`
-
-    clear()
+  valueLast = screenLast.innerText;
 }
 
-function multiply() {
-    if (screenCurrent.innerText == ``) return
+function updateScreenCurrent(a) {
+  if (a === undefined) screenCurrent.innerText = "";
+  else screenCurrent.innerText += a;
 
-    varLast += `${screenCurrent.innerText}*`
-
-    clear()
-}
-
-function devide() {
-    if (screenCurrent.innerText == ``) return
-    varLast += `${screenCurrent.innerText}/`
-
-    clear()
-}
-
-function operate() {
-    if (screenLast.innerText == ``) return
-
-    varLast += screenCurrent.innerText
-    varCalc = eval(varLast).toFixed(2)
-
-    varLast = ``
-    varCurrent = parseFloat(varCalc)
-    
-    updateScreen()
-}
-
-function clear() {
-    varCurrent = ``
-    updateScreen()
-}
-
-function del() {
-    varLast = ``
-    varCurrent = ``
-    updateScreen()
-}
-
-function updateScreen() {
-    screenLast.innerText = `${varLast}`
-    screenCurrent.innerText = `${varCurrent}`
+  valueCurrent = screenCurrent.innerText;
 }
